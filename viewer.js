@@ -11,14 +11,14 @@ const parts = {
   "頭頂部": {
     name: "頭頂部",
     position: "-4.023 85.368 17.761",
-    orbit: "0deg 80deg 2.6m",
+    orbit: "0deg 80deg 5.0m",
     text: "頭蓋骨の最上部。脳を保護する重要な部位。"
   },
 
   "下顎": {
     name: "下顎",
     position: "4.682 -45.525 -132.909",
-    orbit: "25deg 110deg 2.6m",
+    orbit: "165deg 110deg 5.0m",
     text: "咀嚼を行う骨。強い筋肉が付着する。"
   },
 
