@@ -45,7 +45,25 @@ hotspots.forEach(btn => {
 
   });
 });
+const infoCard = document.getElementById("infoCard");
 
+// 情報データ
+const data = {
+  "頭頂部": "頭蓋骨の最上部。脳を保護する重要な部位。",
+  "下顎": "咀嚼を行うための骨。筋肉が強く付着。",
+  "眼窩": "眼球を収める空間部分。視覚機能に関与。"
+};
+
+window.showInfo = function(name) {
+  infoCard.textContent = data[name] || "情報なし";
+};
+
+// モデル読み込み確認
+const viewer = document.getElementById("viewer");
+
+viewer.addEventListener("load", () => {
+  console.log("モデル＋UI準備完了");
+});
 // モデル読み込み確認
 viewer.addEventListener("load", () => {
   console.log("モデル読み込み完了（ホットスポット有効）");
