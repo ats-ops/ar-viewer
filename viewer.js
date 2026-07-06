@@ -24,6 +24,32 @@ window.addEventListener("DOMContentLoaded", () => {
 
   viewer.addEventListener("load", () => {
     console.log("モデル読み込み完了");
+    const viewer = document.getElementById("viewer");
+const popup = document.getElementById("popup");
+
+// ホットスポット全部取得
+const hotspots = document.querySelectorAll(".hotspot");
+
+hotspots.forEach(btn => {
+  btn.addEventListener("click", (e) => {
+
+    const info = btn.getAttribute("data-info");
+
+    popup.textContent = info;
+    popup.classList.remove("hidden");
+
+    // 3秒後に消える
+    setTimeout(() => {
+      popup.classList.add("hidden");
+    }, 3000);
+
+  });
+});
+
+// モデル読み込み確認
+viewer.addEventListener("load", () => {
+  console.log("モデル読み込み完了（ホットスポット有効）");
+});
   });
 });
 });
