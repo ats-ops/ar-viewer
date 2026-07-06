@@ -36,7 +36,7 @@ function init() {
   const loader = new GLTFLoader();
 
   loader.load(
-    "models/model.glb",
+    "model.glb")
 
     function (gltf) {
       model = gltf.scene;
