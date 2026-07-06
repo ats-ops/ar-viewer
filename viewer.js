@@ -44,6 +44,25 @@ document.body.appendChild(output);
 // =========================
 // クリックで座標取得
 // =========================
+let isDragging = false;
+
+viewer.addEventListener("pointerdown", () => {
+  isDragging = false;
+});
+
+viewer.addEventListener("pointermove", () => {
+  isDragging = true;
+});
+
+viewer.addEventListener("click", (event) => {
+
+  if (isDragging) return; // ←ドラッグなら無視
+
+  const hit = viewer.positionAndNormalFromPoint(event.clientX, event.clientY);
+  if (!hit) return;
+
+  console.log("クリック成功:", hit.position);
+});
 viewer.addEventListener("click", (event) => {
 
   // model-viewer専用API
