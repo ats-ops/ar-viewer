@@ -24,6 +24,60 @@ const parts = {
 window.adjustPoint = function(x, y, z) {
   console.log(`調整: ${x}, ${y}, ${z}`);
 };
+const viewer = document.getElementById("viewer");
+const info = document.getElementById("info");
+
+// クリック座標表示用
+const output = document.createElement("div");
+output.style.position = "absolute";
+output.style.bottom = "10px";
+output.style.left = "10px";
+output.style.background = "rgba(0,0,0,0.8)";
+output.style.color = "white";
+output.style.padding = "10px";
+output.style.fontSize = "12px";
+output.style.borderRadius = "8px";
+output.style.zIndex = "999";
+
+document.body.appendChild(output);
+
+// =========================
+// クリックで座標取得
+// =========================
+viewer.addEventListener("click", (event) => {
+
+  // model-viewer専用API
+  const hit = viewer.positionAndNormalFromPoint(event.clientX, event.clientY);
+
+  if (!hit) {
+    output.textContent = "モデル上をクリックしてください";
+    return;
+  }
+
+  const position = hit.position;
+
+  const x = position.x.toFixed(3);
+  const y = position.y.toFixed(3);
+  const z = position.z.toFixed(3);
+
+  const result = `${x} ${y} ${z}`;
+
+  // 表示
+  output.innerHTML = `
+    📍 座標取得:<br>
+    <b>${result}</b><br><br>
+    クリックしてコピー可能
+  `;
+
+  console.log("座標:", result);
+
+  // クリックでコピー
+  output.onclick = () => {
+    navigator.clipboard.writeText(result);
+    output.innerHTML += "<br>コピーしました ✔";
+  };
+
+});
 // =========================
 // サイドバーから呼ばれる関数
 // =========================
