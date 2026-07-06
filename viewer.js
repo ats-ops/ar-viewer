@@ -9,7 +9,7 @@ let currentPoint = null;
 // =========================
 const parts = {
   "頭頂部": {
-    position: "0 0.15 0",
+    position: "0 50 0",
     text: "頭蓋骨の最上部。脳を保護する重要な部位。"
   },
   "下顎": {
