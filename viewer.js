@@ -51,7 +51,21 @@ function moveCamera(part) {
 
   viewer.fieldOfView = "30deg";
 }
+function moveCamera(part) {
 
+  // ⭐自動回転を停止
+  viewer.autoRotate = false;
+
+  // カメラターゲット
+  viewer.cameraTarget = part.position;
+
+  // 滑らか遷移
+  requestAnimationFrame(() => {
+    viewer.cameraOrbit = part.orbit;
+  });
+
+  viewer.fieldOfView = "30deg";
+}
 // =========================
 // ピン位置補正（外側に浮かせる）
 // =========================
