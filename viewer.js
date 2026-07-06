@@ -43,7 +43,6 @@ function init() {
     function (error) {
       console.error("GLB読み込み失敗:", error);
     }
-  );
 }
 
 function animate() {
