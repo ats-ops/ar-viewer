@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>3D図鑑エディタ</title>
+<title>3D骨図鑑</title>
 
 <script type="module"
 src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
@@ -18,16 +18,8 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 <body>
 
 <header class="topbar">
-  🦴 3D図鑑エディタ（編集＋AR対応）
+  🦴 3D骨図鑑（固定データ版）
 </header>
-
-<div class="sidebar">
-  <h3>操作</h3>
-
-  <button onclick="toggleEditMode()">🛠 編集モード</button>
-  <button onclick="clearPins()">🗑 ピン削除</button>
-  <button onclick="document.getElementById('viewer').activateAR()">📱 AR起動</button>
-</div>
 
 <model-viewer
   id="viewer"
@@ -47,8 +39,12 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 >
 </model-viewer>
 
+<!-- 左UI -->
+<div id="panel" class="sidebar"></div>
+
+<!-- 説明 -->
 <div id="info" class="info-card">
-  閲覧モード
+  部位を選択してください
 </div>
 
 <script src="viewer.js"></script>
