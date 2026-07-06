@@ -5,9 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ヒグマ頭骨 3D図鑑</title>
+<title>3D図鑑エディタ</title>
 
-<!-- model-viewer -->
 <script type="module"
 src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
 </script>
@@ -18,66 +17,40 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 <body>
 
-<!-- =========================
-     ヘッダー
-========================= -->
 <header class="topbar">
-  🦴 ヒグマ頭骨インタラクティブ図鑑
+  🦴 3D図鑑エディタ（編集＋AR対応）
 </header>
 
-<!-- =========================
-     左サイドバー（部位選択）
-========================= -->
 <div class="sidebar">
-  <h3>部位一覧</h3>
+  <h3>操作</h3>
 
-  <button onclick="showInfo('頭頂部')">頭頂部</button>
-  <button onclick="showInfo('下顎')">下顎</button>
-  <button onclick="showInfo('眼窩')">眼窩</button>
+  <button onclick="toggleEditMode()">🛠 編集モード</button>
+  <button onclick="clearPins()">🗑 ピン削除</button>
+  <button onclick="document.getElementById('viewer').activateAR()">📱 AR起動</button>
 </div>
 
-<!-- =========================
-     3Dモデルビューア
-========================= -->
 <model-viewer
   id="viewer"
   src="model.glb"
 
   camera-controls
-  auto-rotate
-  shadow-intensity="0.8"
-     camera-controls
-interaction-prompt="none"
-
-  exposure="0.6"
-  tone-mapping="commerce"
+  auto-rotate="false"
 
   ar
   ar-modes="webxr scene-viewer quick-look"
 
+  exposure="0.7"
+  shadow-intensity="0.8"
+  tone-mapping="neutral"
+
   style="width:100vw; height:85vh;"
 >
-
 </model-viewer>
 
-<!-- =========================
-     説明カード
-========================= -->
 <div id="info" class="info-card">
-  部位を選択してください
+  閲覧モード
 </div>
 
-<!-- =========================
-     ARボタン
-========================= -->
-<button class="ar-btn"
-onclick="document.getElementById('viewer').activateAR()">
-📱 ARで見る
-</button>
-
-<!-- =========================
-     スクリプト
-========================= -->
 <script src="viewer.js"></script>
 
 </body>
