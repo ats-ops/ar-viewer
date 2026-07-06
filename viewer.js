@@ -30,13 +30,18 @@ function init() {
 
   const loader = new GLTFLoader();
 
-  loader.load("models/model.glb",) 
-  {
+  // ✔ 正しい書き方
+  loader.load(
+    "models/model.glb",
+
+    function (gltf) {
       model = gltf.scene;
       scene.add(model);
       animate();
     },
+
     undefined,
+
     function (error) {
       console.error("GLB読み込み失敗:", error);
     }
