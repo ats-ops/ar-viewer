@@ -98,16 +98,76 @@ body {
 }
 
 /* ホットスポット */
-.hotspot {
-  background: red;
-  border: none;
-  border-radius: 50%;
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
-  opacity: 0.8;
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #111;
+  color: white;
 }
 
+/* 上バー */
+.topbar {
+  background: #222;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* サイドバー */
+.sidebar {
+  position: absolute;
+  left: 10px;
+  top: 60px;
+  width: 160px;
+  background: rgba(0,0,0,0.6);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.sidebar button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background: #555;
+}
+
+/* 説明カード */
+.info-card {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  padding: 12px 18px;
+  border-radius: 10px;
+  min-width: 200px;
+  text-align: center;
+}
+
+/* ARボタン */
+.ar-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 80px;
+  padding: 14px 18px;
+  background: #2d7dff;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.ar-btn:hover {
+  background: #1c5ed6;
+}
 /* ポップアップ */
 .popup {
   position: absolute;
