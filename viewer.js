@@ -16,7 +16,7 @@ const parts = {
 
   "下顎": {
     name: "下顎",
-   position: "4.682 -45.525 -132.909",
+    position: "4.682 -45.525 -132.909",
     text: "咀嚼を行う骨。強い筋肉が付着する。"
   },
 
@@ -74,5 +74,3 @@ Object.keys(parts).forEach((key) => {
 
   panel.appendChild(btn);
 });
-
-
