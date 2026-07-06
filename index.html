@@ -18,13 +18,40 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 <!-- 上バー -->
 <header class="topbar">
-  🦴 3D骨図鑑（PBR＋AR対応）
+  🦴 3D骨図鑑（閲覧モード）
 </header>
 
-<!-- 左UI -->
+<!-- 左：部位ボタン -->
 <div id="panel" class="sidebar"></div>
 
-<!-- 説明UI -->
+<!-- 右：標本情報 -->
+<div id="specimen" class="specimen-card">
+  <h3>標本情報</h3>
+
+  <table>
+    <tr>
+      <th>標本名</th>
+      <td>ヒグマ頭骨</td>
+    </tr>
+
+    <tr>
+      <th>取得方法</th>
+      <td>3Dスキャン（Revo Scan）</td>
+    </tr>
+
+    <tr>
+      <th>形式</th>
+      <td>GLB</td>
+    </tr>
+
+    <tr>
+      <th>用途</th>
+      <td>教育・閲覧</td>
+    </tr>
+  </table>
+</div>
+
+<!-- 下：説明 -->
 <div id="info" class="info-card">
   部位を選択してください
 </div>
@@ -35,9 +62,7 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
   src="model.glb"
 
   camera-controls
-
   ar
-  ar-modes="webxr scene-viewer quick-look"
 
   exposure="0.55"
   shadow-intensity="1.2"
