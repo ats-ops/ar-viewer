@@ -131,7 +131,9 @@ model-viewer {
   height: 100vh;
   background: #000;
 }
-
+model-viewer {
+  touch-action: none;
+}
 /* =========================
    モバイル対応
 ========================= */
