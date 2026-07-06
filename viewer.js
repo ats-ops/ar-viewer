@@ -30,9 +30,8 @@ function init() {
 
   const loader = new GLTFLoader();
 
-  loader.load(
-    "models/model.glb",
-    function (gltf) {
+  loader.load("models/model.glb",) 
+  {
       model = gltf.scene;
       scene.add(model);
       animate();
