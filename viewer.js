@@ -5,7 +5,7 @@ const info = document.getElementById("info");
 let currentPin = null;
 
 // =========================
-// 図鑑データ（あなたの実測座標）
+// 図鑑データ
 // =========================
 const parts = {
   "頭頂部": {
@@ -33,19 +33,32 @@ const parts = {
     name: "犬歯",
     position: "-24.314 -18.262 -126.959",
     orbit: "-40deg 100deg 2.4m",
-    text: "獲物を捕らえ引き裂くための鋭い歯。"
+    text: "獲物を捕らえ引き裂くための鋭い歯。肉食動物の特徴。"
   }
 };
 
 // =========================
-// 座標を「外側に少し浮かせる」
-// （簡易法線風オフセット）
+// カメラ移動（滑らか）
 // =========================
-function offsetPosition(posStr, strength = 3) {
+function moveCamera(part) {
+
+  viewer.cameraTarget = part.position;
+
+  // 1フレーム遅延で自然な補間
+  requestAnimationFrame(() => {
+    viewer.cameraOrbit = part.orbit;
+  });
+
+  viewer.fieldOfView = "30deg";
+}
+
+// =========================
+// ピン位置補正（外側に浮かせる）
+// =========================
+function offsetPosition(posStr, strength = 4) {
 
   const [x, y, z] = posStr.split(" ").map(Number);
 
-  // 原点方向から外に押し出す（簡易法線代わり）
   const len = Math.sqrt(x*x + y*y + z*z);
 
   const nx = x / len;
@@ -53,18 +66,6 @@ function offsetPosition(posStr, strength = 3) {
   const nz = z / len;
 
   return `${x + nx * strength} ${y + ny * strength} ${z + nz * strength}`;
-}
-
-// =========================
-// カメラ滑らか移動
-// =========================
-function moveCamera(part) {
-
-  viewer.cameraTarget = part.position;
-
-  requestAnimationFrame(() => {
-    viewer.cameraOrbit = part.orbit;
-  });
 }
 
 // =========================
@@ -88,16 +89,21 @@ Object.keys(parts).forEach((key) => {
     // 既存ピン削除
     if (currentPin) currentPin.remove();
 
-    // =========================
-    // ⭐ここが重要：外側に浮かせる
-    // =========================
-    const pinPosition = offsetPosition(part.position, 4);
-
+    // ピン生成（外側にオフセット）
     const pin = document.createElement("button");
     pin.className = "hotspot";
     pin.slot = "hotspot-" + key;
-    pin.dataset.position = pinPosition;
+    pin.dataset.position = offsetPosition(part.position, 5);
     pin.textContent = "📍";
+
+    // ピンクリックでも説明更新
+    pin.addEventListener("click", (e) => {
+      e.stopPropagation();
+      info.innerHTML = `
+        <b>${part.name}</b><br>
+        ${part.text}
+      `;
+    });
 
     viewer.appendChild(pin);
     currentPin = pin;
@@ -107,4 +113,11 @@ Object.keys(parts).forEach((key) => {
   });
 
   panel.appendChild(btn);
+});
+
+// =========================
+// 初期表示
+// =========================
+viewer.addEventListener("load", () => {
+  info.textContent = "部位を選択してください";
 });
