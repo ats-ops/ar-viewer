@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>3D Viewer</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+</head>
+
+<body>
+
+<button id="btn" onclick="location.href='ar.html'">ARで見る</button>
+
+<canvas id="canvas"></canvas>
+
+<div id="qr"></div>
+
+<script type="module" src="viewer.js"></script>
+<script src="qr.js"></script>
+
+</body>
+</html>
