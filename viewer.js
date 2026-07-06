@@ -11,7 +11,7 @@ const parts = {
   "頭頂部": {
     name: "頭頂部",
     position: "-4.023 85.368 17.761",
-    orbit: "0deg 80deg 5.0m",
+    orbit: "15deg 110deg 3.6m",
     text: "頭蓋骨の最上部。脳を保護する重要な部位。"
   },
 
@@ -25,14 +25,14 @@ const parts = {
   "眼窩": {
     name: "眼窩",
     position: "-24.483 51.793 -16.613",
-    orbit: "-20deg 95deg 2.6m",
+    orbit: "30deg 100deg 4.2m",
     text: "眼球が収まる空間。視覚機能に関係。"
   },
 
   "犬歯": {
     name: "犬歯",
     position: "-24.314 -18.262 -126.959",
-    orbit: "-40deg 100deg 2.4m",
+    orbit: "110deg 85deg 3.5m",
     text: "獲物を捕らえ引き裂くための鋭い歯。肉食動物の特徴。"
   }
 };
