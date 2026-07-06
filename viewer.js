@@ -13,7 +13,7 @@ const parts = {
   "頭頂部": {
     name: "頭頂部",
     position: "-4.023 85.368 17.761",
-    orbit: "0deg -150deg 2.6m",
+    orbit: "25deg 150deg 2.6m",
     text: "頭蓋骨の最上部。脳を保護する重要な部位。"
   },
 
