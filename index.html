@@ -5,24 +5,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>3D Viewer UI版</title>
-
-<link rel="stylesheet" href="style.css">
+<title>骨モデルUI</title>
 
 <script type="module"
 src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
 </script>
 
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<!-- ヘッダー -->
 <header class="topbar">
-  <h1>🐻 ヒグマ頭骨 3Dビューア</h1>
+  <h1>🐻 ヒグマ頭骨（クリック説明付き）</h1>
 </header>
 
-<!-- メイン -->
 <main>
 
 <model-viewer
@@ -30,41 +28,37 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
   src="model.glb"
   camera-controls
   auto-rotate
-  rotation-per-second="10deg"
-  shadow-intensity="1"
-  environment-image="neutral"
-  exposure="0.8"
   ar
-  ar-modes="webxr scene-viewer quick-look"
+  shadow-intensity="1"
   style="width:100vw; height:80vh;"
-></model-viewer>
 
-<!-- 左パネル -->
-<div class="panel">
-  <h2>情報</h2>
-  <p>ヒグマ頭骨（3Dスキャンデータ）</p>
+>
 
-  <h3>操作</h3>
-  <ul>
-    <li>ドラッグ：回転</li>
-    <li>ピンチ：拡大縮小</li>
-    <li>右クリック：移動</li>
-  </ul>
+  <!-- 🧠 ホットスポット①（頭頂） -->
+  <button class="hotspot"
+    slot="hotspot-top"
+    data-position="0 0.15 0"
+    data-normal="0 1 0"
+    data-visibility-attribute="visible"
+    data-info="頭頂部：頭蓋骨の最上部。脳を保護する重要部分。">
+    ●
+  </button>
 
-  <button onclick="resetView()">視点リセット</button>
-</div>
+  <!-- 🧠 ホットスポット②（顎） -->
+  <button class="hotspot"
+    slot="hotspot-jaw"
+    data-position="0 -0.1 0.2"
+    data-normal="0 -1 0"
+    data-info="下顎：咀嚼を行う主要な骨。筋肉付着が強い。">
+    ●
+  </button>
 
-<!-- ARボタン -->
-<button class="ar-btn" onclick="document.getElementById('viewer').activateAR()">
-  📱 ARで見る
-</button>
+</model-viewer>
+
+<!-- 説明ポップアップ -->
+<div id="popup" class="popup hidden"></div>
 
 </main>
-
-<!-- フッター -->
-<footer>
-  <p>RevoScan / GLB / 教育用3Dビューア</p>
-</footer>
 
 <script src="viewer.js"></script>
 
