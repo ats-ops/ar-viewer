@@ -1,25 +1,56 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-  <meta charset="UTF-8">
-  <title>3D Viewer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+<title>3D Viewer（model-viewer版）</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<!-- model-viewer -->
+<script type="module"
+src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+</script>
+
 </head>
 
 <body>
 
-<button id="btn" onclick="location.href='ar.html'">ARで見る</button>
+<header>
+  <h1>3Dモデルビューアー</h1>
+</header>
 
-<canvas id="canvas"></canvas>
+<main>
 
-<div id="qr"></div>
+  <model-viewer
+    id="viewer"
+    src="model.glb"
+    camera-controls
+    touch-action="pan-y"
+    auto-rotate
+    rotation-per-second="12deg"
+    shadow-intensity="1"
+    environment-image="neutral"
+    exposure="0.8"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    loading="eager"
+    reveal="auto"
+    style="width:100vw; height:80vh;"
+  ></model-viewer>
 
-<!-- module必須 -->
-<script type="module" src="viewer.js"></script>
-<script src="qr.js"></script>
+</main>
+
+<footer>
+
+  <p>ドラッグで回転 / スマホでAR対応</p>
+
+</footer>
+
+<script src="viewer.js"></script>
 
 </body>
+
 </html>
