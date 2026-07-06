@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>骨モデルUI</title>
+<title>3D骨図鑑UI</title>
 
 <script type="module"
 src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
@@ -18,11 +18,21 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 <body>
 
 <header class="topbar">
-  <h1>🐻 ヒグマ頭骨（クリック説明付き）</h1>
+  🦴 ヒグマ頭骨インタラクティブ図鑑
 </header>
 
 <main>
 
+<!-- 左メニュー -->
+<div class="sidebar">
+  <h3>部位一覧</h3>
+
+  <button onclick="showInfo('頭頂部')">頭頂部</button>
+  <button onclick="showInfo('下顎')">下顎</button>
+  <button onclick="showInfo('眼窩')">眼窩</button>
+</div>
+
+<!-- 3D -->
 <model-viewer
   id="viewer"
   src="model.glb"
@@ -31,32 +41,18 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
   ar
   shadow-intensity="1"
   style="width:100vw; height:80vh;"
-
 >
-
-  <!-- 🧠 ホットスポット①（頭頂） -->
-  <button class="hotspot"
-    slot="hotspot-top"
-    data-position="0 0.15 0"
-    data-normal="0 1 0"
-    data-visibility-attribute="visible"
-    data-info="頭頂部：頭蓋骨の最上部。脳を保護する重要部分。">
-    ●
-  </button>
-
-  <!-- 🧠 ホットスポット②（顎） -->
-  <button class="hotspot"
-    slot="hotspot-jaw"
-    data-position="0 -0.1 0.2"
-    data-normal="0 -1 0"
-    data-info="下顎：咀嚼を行う主要な骨。筋肉付着が強い。">
-    ●
-  </button>
-
 </model-viewer>
 
-<!-- 説明ポップアップ -->
-<div id="popup" class="popup hidden"></div>
+<!-- 説明カード（固定） -->
+<div id="infoCard" class="info-card">
+  部位を選択してください
+</div>
+
+<!-- ARボタン -->
+<button class="ar-btn" onclick="document.getElementById('viewer').activateAR()">
+📱 AR起動
+</button>
 
 </main>
 
