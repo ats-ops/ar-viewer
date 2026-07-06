@@ -5,11 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>3D Viewer（model-viewer版）</title>
+<title>3D Viewer UI版</title>
 
 <link rel="stylesheet" href="style.css">
 
-<!-- model-viewer -->
 <script type="module"
 src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
 </script>
@@ -18,35 +17,53 @@ src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.j
 
 <body>
 
-<header>
-  <h1>3Dモデルビューアー</h1>
+<!-- ヘッダー -->
+<header class="topbar">
+  <h1>🐻 ヒグマ頭骨 3Dビューア</h1>
 </header>
 
+<!-- メイン -->
 <main>
 
-  <model-viewer
-    id="viewer"
-    src="model.glb"
-    camera-controls
-    touch-action="pan-y"
-    auto-rotate
-    rotation-per-second="12deg"
-    shadow-intensity="1"
-    environment-image="neutral"
-    exposure="0.8"
-    ar
-    ar-modes="webxr scene-viewer quick-look"
-    loading="eager"
-    reveal="auto"
-    style="width:100vw; height:80vh;"
-  ></model-viewer>
+<model-viewer
+  id="viewer"
+  src="model.glb"
+  camera-controls
+  auto-rotate
+  rotation-per-second="10deg"
+  shadow-intensity="1"
+  environment-image="neutral"
+  exposure="0.8"
+  ar
+  ar-modes="webxr scene-viewer quick-look"
+  style="width:100vw; height:80vh;"
+></model-viewer>
+
+<!-- 左パネル -->
+<div class="panel">
+  <h2>情報</h2>
+  <p>ヒグマ頭骨（3Dスキャンデータ）</p>
+
+  <h3>操作</h3>
+  <ul>
+    <li>ドラッグ：回転</li>
+    <li>ピンチ：拡大縮小</li>
+    <li>右クリック：移動</li>
+  </ul>
+
+  <button onclick="resetView()">視点リセット</button>
+</div>
+
+<!-- ARボタン -->
+<button class="ar-btn" onclick="document.getElementById('viewer').activateAR()">
+  📱 ARで見る
+</button>
 
 </main>
 
+<!-- フッター -->
 <footer>
-
-  <p>ドラッグで回転 / スマホでAR対応</p>
-
+  <p>RevoScan / GLB / 教育用3Dビューア</p>
 </footer>
 
 <script src="viewer.js"></script>
