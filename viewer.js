@@ -7,11 +7,11 @@ init();
 
 function init() {
 
-  // シーン
+  // ===== シーン =====
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
 
-  // カメラ
+  // ===== カメラ =====
   camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -20,41 +20,53 @@ function init() {
   );
   camera.position.z = 2;
 
-  // レンダラー
+  // ===== レンダラー =====
   renderer = new THREE.WebGLRenderer({
     canvas: document.getElementById("canvas"),
     antialias: true
   });
 
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
 
-  // ライト
-  const light = new THREE.HemisphereLight(0xffffff, 0x444444);
-  scene.add(light);
+  // ===== ライト =====
+  const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2);
+  scene.add(hemiLight);
 
-  // ローダー
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+  dirLight.position.set(3, 3, 3);
+  scene.add(dirLight);
+
+  // ===== ローダー =====
   const loader = new GLTFLoader();
 
   loader.load(
-    "model.glb")
+    "./model.glb", // ★直置き対応
 
     function (gltf) {
       model = gltf.scene;
       scene.add(model);
+
+      // 中央に寄せる
+      model.position.set(0, 0, 0);
+
+      // 少し見やすくスケール調整（必要なら変更）
+      model.scale.set(1, 1, 1);
+
       animate();
     },
 
     function (xhr) {
-      console.log((xhr.loaded / xhr.total * 100) + "% loaded");
+      console.log(`loading: ${(xhr.loaded / xhr.total * 100).toFixed(1)}%`);
     },
 
     function (error) {
-      console.error("GLB読み込み失敗:", error);
+      console.error("❌ GLB読み込み失敗:", error);
     }
   );
 }
 
-// アニメーション
+// ===== アニメーション =====
 function animate() {
   requestAnimationFrame(animate);
 
@@ -64,3 +76,10 @@ function animate() {
 
   renderer.render(scene, camera);
 }
+
+// ===== リサイズ対応 =====
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
