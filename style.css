@@ -15,3 +15,71 @@ footer {
   font-size: 14px;
   opacity: 0.8;
 }
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #111;
+  color: white;
+}
+
+/* 上バー */
+.topbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #222;
+  padding: 10px;
+  text-align: center;
+  z-index: 10;
+}
+
+/* 左パネル */
+.panel {
+  position: absolute;
+  top: 70px;
+  left: 10px;
+  width: 220px;
+  background: rgba(0,0,0,0.6);
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 10;
+  font-size: 14px;
+}
+
+/* ARボタン */
+.ar-btn {
+  position: absolute;
+  right: 20px;
+  bottom: 80px;
+  padding: 15px 20px;
+  font-size: 16px;
+  background: #2d7dff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.ar-btn:hover {
+  background: #1f5fcc;
+}
+
+/* フッター */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: #222;
+  padding: 5px;
+  font-size: 12px;
+}
+
+/* モバイル対応 */
+@media (max-width: 600px) {
+  .panel {
+    width: 160px;
+    font-size: 12px;
+  }
+}
