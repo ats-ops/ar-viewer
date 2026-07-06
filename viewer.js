@@ -1,7 +1,6 @@
-import * as THREE from "...three.module.js";
-import { GLTFLoader } from "...";
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js";
+import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js";
 
-const loader = new GLTFLoader();
 let scene, camera, renderer, model;
 
 init();
@@ -29,11 +28,10 @@ function init() {
 
   camera.position.z = 2;
 
-  // ✔ ここが修正ポイント
   const loader = new GLTFLoader();
 
   loader.load(
-    "models/model.glb"),
+    "models/model.glb",
     function (gltf) {
       model = gltf.scene;
       scene.add(model);
@@ -43,10 +41,15 @@ function init() {
     function (error) {
       console.error("GLB読み込み失敗:", error);
     }
+  );
 }
 
 function animate() {
   requestAnimationFrame(animate);
-  if (model) model.rotation.y += 0.01;
+
+  if (model) {
+    model.rotation.y += 0.01;
+  }
+
   renderer.render(scene, camera);
 }
