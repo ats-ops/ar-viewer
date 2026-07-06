@@ -12,5 +12,18 @@ window.addEventListener("DOMContentLoaded", () => {
     console.error("3Dモデル読み込み失敗");
     alert("モデルを読み込めませんでした（model.glbを確認）");
   });
+function resetView() {
+  const viewer = document.getElementById("viewer");
 
+  viewer.cameraOrbit = "0deg 75deg 2.5m";
+  viewer.fieldOfView = "30deg";
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const viewer = document.getElementById("viewer");
+
+  viewer.addEventListener("load", () => {
+    console.log("モデル読み込み完了");
+  });
+});
 });
