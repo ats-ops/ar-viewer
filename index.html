@@ -2,78 +2,162 @@
 <html lang="ja">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>3D骨図鑑</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script type="module"
-src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
-</script>
+    <title>3D骨格標本ビューア</title>
 
-<link rel="stylesheet" href="style.css">
+    <script type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<!-- 上バー -->
-<header class="topbar">
-  🦴 3D骨図鑑（閲覧モード）
-</header>
+    <!-- =======================
+         タイトル
+    ======================== -->
+    <header class="topbar">
+        🦴 3D骨格標本ビューア
+    </header>
 
-<!-- 左：部位ボタン -->
-<div id="panel" class="sidebar"></div>
 
-<!-- 右：標本情報 -->
-<div id="specimen" class="specimen-card">
-  <h3>標本情報</h3>
+    <!-- =======================
+         標本選択
+    ======================== -->
+    <div id="modelPanel" class="model-panel">
 
-  <table>
-    <tr>
-      <th>標本名</th>
-      <td>ヒグマ頭骨</td>
-    </tr>
+        <h3>標本一覧</h3>
 
-    <tr>
-      <th>取得方法</th>
-      <td>3Dスキャン（Revo Scan）</td>
-    </tr>
+        <button onclick="changeModel('3593')">
+            標本3593
+        </button>
 
-    <tr>
-      <th>形式</th>
-      <td>GLB</td>
-    </tr>
+        <button onclick="changeModel('4127')">
+            標本4127
+        </button>
 
-    <tr>
-      <th>用途</th>
-      <td>教育・閲覧</td>
-    </tr>
-  </table>
-</div>
+    </div>
 
-<!-- 下：説明 -->
-<div id="info" class="info-card">
-  部位を選択してください
-</div>
 
-<!-- 3Dモデル -->
-<model-viewer
-  id="viewer"
-  src="model.glb"
+    <!-- =======================
+         部位一覧
+    ======================== -->
+    <div id="panel" class="sidebar">
 
-  camera-controls
-  ar
+        <!-- viewer.jsで自動生成 -->
 
-  exposure="0.55"
-  shadow-intensity="1.2"
-  environment-image="neutral"
-  tone-mapping="neutral"
+    </div>
 
-  style="width:100vw; height:100vh;"
->
-</model-viewer>
 
-<script src="viewer.js"></script>
+    <!-- =======================
+         標本情報
+    ======================== -->
+    <div id="specimen" class="specimen-card">
+
+        <h3>標本情報</h3>
+
+        <table>
+
+            <tr>
+                <th>標本名</th>
+                <td id="specimen-name">ヒグマ頭骨</td>
+            </tr>
+
+            <tr>
+                <th>種名</th>
+                <td id="species">Ursus arctos</td>
+            </tr>
+
+            <tr>
+                <th>個体</th>
+                <td id="age">成体</td>
+            </tr>
+
+            <tr>
+                <th>性別</th>
+                <td id="sex">不明</td>
+            </tr>
+
+            <tr>
+                <th>取得場所</th>
+                <td id="location">北海道</td>
+            </tr>
+
+            <tr>
+                <th>取得日</th>
+                <td id="date">----</td>
+            </tr>
+
+            <tr>
+                <th>保存状態</th>
+                <td id="condition">良好</td>
+            </tr>
+
+            <tr>
+                <th>標本番号</th>
+                <td id="specimen-id">3593</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <!-- =======================
+         説明欄
+    ======================== -->
+    <div id="info" class="info-card">
+
+        部位を選択してください。
+
+    </div>
+
+
+    <!-- =======================
+         3Dモデル
+    ======================== -->
+
+    <model-viewer
+
+        id="viewer"
+
+        src="models/3593_bear.glb"
+
+        camera-controls
+
+        ar
+
+        ar-modes="webxr scene-viewer quick-look"
+
+        shadow-intensity="1"
+
+        exposure="0.55"
+
+        tone-mapping="neutral"
+
+        environment-image="neutral"
+
+        interaction-prompt="auto"
+
+        loading="eager"
+
+        reveal="auto"
+
+        style="width:100vw;height:100vh;">
+
+    </model-viewer>
+
+
+    <!-- =======================
+         読み込み
+    ======================== -->
+
+    <script src="viewer.js"></script>
 
 </body>
 
